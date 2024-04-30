@@ -2,8 +2,8 @@
  #include<stdlib.h> 
  int main(){
  	int state=0;
-	int a=0,i,j;
-	char ch,y;
+	int a=0,i,j,y;
+	char ch;
 	int password;
 
 	printf("輸入密碼\n");
@@ -25,7 +25,7 @@
 		    	scanf("%d",&password);
 				break;	
 			}
-			else if(a=3){
+			else if(a==3){
 				return 0;
 			}
 		case 1:
@@ -71,6 +71,25 @@
 		        system("CLS");
 		        state=1;
 		    	break;
+		case 3:
+			printf("請輸入1-9:");
+			scanf(" %d",&y);
+				do{
+				printf("重新輸入\n");
+				scanf(" %d",&y);
+				
+			}while(y<=0);
+				for(i = 1;i<=y;i++){
+					for(j = 1;j<=y;j++){
+						printf(" %d*%d=%2d \n",i,j,i*j);
+					}
+				}
+				system("PAUSE");
+		        system("CLS");
+		        state=1;
+		    	break;
+			
+			
 			
 	}
  
