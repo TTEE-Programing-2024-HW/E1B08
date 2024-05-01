@@ -5,7 +5,28 @@
 	int a=0,i,j,y;
 	char ch;
 	int password;
+	puts("      *            *            *");
+    puts("     ***          ***          ***");
+    puts("    *****        *****        *****");
+    puts("   *******      *******      *******");
+    puts("  *********    *********    *********");
+    puts("     |||          |||          |||");
 
+    puts("      *            *            *");
+    puts("     ***          ***          ***");
+    puts("    *****        *****        *****");
+    puts("   *******      *******      *******");
+    puts("  *********    *********    *********");
+    puts("     |||          |||          |||");
+
+    puts("      *            *            *");
+    puts("     ***          ***          ***");
+    puts("    *****        *****        *****");
+    puts("   *******      *******      *******");
+    puts("  *********    *********    *********");
+    puts(" ***********  ***********  ***********");
+    puts("     |||          |||          |||");
+    
 	printf("輸入密碼\n");
 	scanf("%d",&password);
 	while(1)
@@ -73,21 +94,24 @@
 		    	break;
 		case 3:
 			printf("請輸入1-9:");
-			scanf(" %d",&y);
-				do{
-				printf("重新輸入\n");
-				scanf(" %d",&y);
-				
-			}while(y<=0);
-				for(i = 1;i<=y;i++){
-					for(j = 1;j<=y;j++){
-						printf(" %d*%d=%2d \n",i,j,i*j);
-					}
-				}
-				system("PAUSE");
-		        system("CLS");
-		        state=1;
-		    	break;
+    		scanf(" %d", &y);
+    			do {
+        			if (y < 1 || y > 9) {
+            			printf("重新輸入\n");
+            			scanf(" %d", &y);
+        			}
+    			} while (y < 1 || y > 9);
+
+    		for (i = 1; i <= y; i++) {
+        		for (j = 1; j <= y; j++) {
+            		printf(" %d*%d=%2d \n", i, j, i*j);
+        		}
+    		}
+
+    		system("PAUSE");
+    		system("CLS");
+    		state = 1;
+    		break;
 		case 4:
 				printf("Continue? (y/n): ");
                 scanf(" %c", &ch);
