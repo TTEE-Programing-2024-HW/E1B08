@@ -88,7 +88,27 @@
 		        system("CLS");
 		        state=1;
 		    	break;
-			
+		case 4:
+				printf("Continue? (y/n): ");
+                scanf(" %c", &ch);
+                if((ch=='y')||(ch=='Y'))
+                {
+                	state=1;
+                	system("CLS");
+                	break;
+				}
+				else if((ch=='n')||(ch=='N'))
+				{
+					return 0;
+				}
+				else
+				{
+				 do{
+				 	printf("¿ù»~\n­«·s¿é¤J\n");
+				 	scanf(" %c", &ch);	
+				 }while((ch=='y')||(ch=='Y')||(ch=='n')||(ch=='N'));
+				 
+				}
 			
 			
 	}
