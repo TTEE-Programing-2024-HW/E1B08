@@ -47,6 +47,35 @@ int main(){
 				else if(a==2){
 					return 0;
 				}
+			case 1:
+				printf("==========================\n");
+		   		printf("|| a. Available seats   ||\n");
+		   		printf("|| b. Arrange for you   ||\n");
+		   		printf("|| c. Choose by yourself||\n");
+		   		printf("|| d. Exit              ||\n");
+		   		printf("==========================\n");
+		   		scanf("%s",&ch);
+		   		switch(ch){
+		   			case 'a':
+		   			case 'A':
+		   				state=2;
+		   				break;
+		   			case 'b':
+		   			case 'B':
+		   				state=3;
+		   				break;
+		   			case 'c':
+		   			case 'C':
+		   				state=4;
+		   				break;
+		   			case 'd':
+		   			case 'D':
+		   				state=5;
+		   				break;
+				   }
+				   system("CLS");
+				   break;
+				
 		}
 	}
 	
