@@ -1,10 +1,10 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include <time.h>
+#include<time.h>
 int main(){
 	int state=0;
-	int a=0,i,j,y;
-	char ch;
+	int a=0,i,j,k,peo;
+	char ch,y;
 	int pass;
 	char seat[9][9]={
 	{'-','-','-','-','-','-','-','-','-'},
@@ -87,15 +87,89 @@ int main(){
 				   system("CLS");
 				   break;
 			case 2:
-				printf("\\123456789\n");
-				for(i=0;i<9;i++){
-					printf("\n%d",i+1);
-					for(j=0;j<9;j++){
-						printf("%c",seat[i][j]);
+				for (i = 0; i < 9; i++) {
+    					for (j = 0; j < 9; j++) {
+        					seat[i][j]='-';
+    					}
 					}
-				}printf("\n");
+				srand((unsigned)time(NULL));// 使用時間作為種子，以確保每次運行都有不同的隨機數
+				int selected[9][9] = {0}; // 用於記錄已選取的位置
+
+				for (k = 0; k < 10; k++) {
+    			int row, col;
+    				do {
+        				row = rand() % 9;
+        				col = rand() % 9;
+    				} while (selected[row][col]); // // 如果已經選取過，則重新選取
+
+   				selected[row][col] = 1; // 標記為已選取
+    			seat[row][col] = '*';
+				}
+				printf(" 123456789\n");
+					for (i = 0; i < 9; i++) {
+    					printf("%d", i+1);
+    					for (j = 0; j < 9; j++) {
+        					printf("%c", seat[i][j]);
+    					}
+    					printf("\n");
+					}
 				system("pause");
+				system("CLS");
+				state=1;
+					
 				break;	
+			case 3:
+				printf("需要幾個座位(1~4人)\n");
+				scanf("%d",&peo);
+				system("CLS");
+				if(peo==1){
+					srand((unsigned)time(NULL));// 使用時間作為種子，以確保每次運行都有不同的隨機數
+					int one[9][9] = {0}; // 用於記錄已選取的位置
+    				int row1, col1;
+    					do {
+        					row1 = rand() % 9;
+        					col1 = rand() % 9;
+    					} while (selected[row1][col1]); // // 如果已經選取過，則重新選取
+   					one[row1][col1] = 1; // 標記為已選取
+    				seat[row1][col1] = '@';
+    				printf(" 123456789\n");
+					for (i = 0; i < 9; i++) {
+    					printf("%d", i+1);
+    					for (j = 0; j < 9; j++) {
+        					printf("%c", seat[i][j]);
+    					}
+    					printf("\n");
+					}
+					printf("是否滿意(y/n)\n");
+					fflush(stdin);
+					scanf("%c",&y);
+						if(y=='y'||y=='Y'){
+							system("CLS");
+							seat[row1][col1] = '*';
+							printf(" 123456789\n");
+							for (i = 0; i < 9; i++) {
+    							printf("%d", i+1);
+    						for (j = 0; j < 9; j++) {
+        						printf("%c", seat[i][j]);
+    					}
+    					printf("\n");
+						}
+							state=1;
+							system("pause");
+							system("CLS");
+							
+							break;
+						}
+						else if(y=='n'||y=='N'){
+							seat[row1][col1] = '-';
+							system("CLS");
+							state=1;
+							break;
+						}	
+					break;
+				}
+				
+				
 		}
 	}
 	
