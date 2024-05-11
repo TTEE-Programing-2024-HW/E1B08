@@ -6,6 +6,7 @@ int main(){
 	int a=0,i,j,k,peo;
 	char ch,y;
 	int pass;
+	int row1, col1,row2,col2,row3,col3,row4,col4;
 	char seat[9][9]={
 	{'-','-','-','-','-','-','-','-','-'},
 	{'-','-','-','-','-','-','-','-','-'},
@@ -125,7 +126,6 @@ int main(){
 				if(peo==1){
 					srand((unsigned)time(NULL));// 使用時間作為種子，以確保每次運行都有不同的隨機數
 					int one[9][9] = {0}; // 用於記錄已選取的位置
-    				int row1, col1;
     					do {
         					row1 = rand() % 9;
         					col1 = rand() % 9;
@@ -165,9 +165,117 @@ int main(){
 							system("CLS");
 							state=1;
 							break;
-						}	
-					break;
+						}}
+				if(peo==2){
+					srand((unsigned)time(NULL));// 使用時間作為種子，以確保每次運行都有不同的隨機數
+					int two[9][9] = {0}; // 用於記錄已選取的位置
+    						do {
+        					row1 = rand() % 9;
+        					col1 = rand() % 9;
+        					row2=row1;
+        					col2=col1+1;
+    					} while ((selected[row1][col1])||(selected[row2][col2])); // // 如果已經選取過，則重新選取
+   					two[row1][col1] = 1; // 標記為已選取
+   					two[row2][col2] = 1;
+    				seat[row1][col1] = '@';
+    				seat[row2][col2] = '@';
+
+    				printf(" 123456789\n");
+					for (i = 0; i < 9; i++) {
+    					printf("%d", i+1);
+    					for (j = 0; j < 9; j++) {
+        					printf("%c", seat[i][j]);
+    					}
+    					printf("\n");
+					}
+					printf("是否滿意(y/n)\n");
+					fflush(stdin);
+					scanf("%c",&y);
+						if(y=='y'||y=='Y'){
+							system("CLS");
+							seat[row1][col1] = '*';
+    						seat[row2][col2] = '*';
+							printf(" 123456789\n");
+							for (i = 0; i < 9; i++) {
+    							printf("%d", i+1);
+    						for (j = 0; j < 9; j++) {
+        						printf("%c", seat[i][j]);
+    					}
+    					printf("\n");
+						}
+							state=1;
+							system("pause");
+							system("CLS");
+							
+							break;
+						}
+						else if(y=='n'||y=='N'){
+							seat[row1][col1] = '-';
+    						seat[row2][col2] = '-';
+							system("CLS");
+							state=1;
+							break;
+						}
 				}
+				if(peo==3){
+					srand((unsigned)time(NULL));// 使用時間作為種子，以確保每次運行都有不同的隨機數
+					int two[9][9] = {0}; // 用於記錄已選取的位置
+    						do {
+        					row1 = rand() % 9;
+        					col1 = rand() % 9;
+        					row2=row3=row1;
+        					col2=col1+1;
+        					col3=col2+1;
+    					} while ((selected[row1][col1])||(selected[row2][col2])||(selected[row3][col3])); // // 如果已經選取過，則重新選取
+   					two[row1][col1] = 1; // 標記為已選取
+   					two[row2][col2] = 1;
+   					two[row3][col3] = 1;
+    				seat[row1][col1] = '@';
+    				seat[row2][col2] = '@';
+    				seat[row3][col3] = '@';
+
+    				printf(" 123456789\n");
+					for (i = 0; i < 9; i++) {
+    					printf("%d", i+1);
+    					for (j = 0; j < 9; j++) {
+        					printf("%c", seat[i][j]);
+    					}
+    					printf("\n");
+					}
+					printf("是否滿意(y/n)\n");
+					fflush(stdin);
+					scanf("%c",&y);
+						if(y=='y'||y=='Y'){
+							system("CLS");
+							seat[row1][col1] = '*';
+    						seat[row2][col2] = '*';
+    						seat[row3][col3] = '*';
+							printf(" 123456789\n");
+							for (i = 0; i < 9; i++) {
+    							printf("%d", i+1);
+    						for (j = 0; j < 9; j++) {
+        						printf("%c", seat[i][j]);
+    					}
+    					printf("\n");
+						}
+							state=1;
+							system("pause");
+							system("CLS");
+							
+							break;
+						}
+						else if(y=='n'||y=='N'){
+							seat[row1][col1] = '-';
+    						seat[row2][col2] = '-';
+    						seat[row3][col3] = '-';
+							system("CLS");
+							state=1;
+							break;
+						}
+				}
+			
+					break;
+				
 				
 				
 		}
