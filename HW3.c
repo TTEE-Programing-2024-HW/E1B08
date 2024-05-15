@@ -1,13 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
-int main(){
-	int state=0;
-	int a=0,i,j,k,peo;
-	char ch,y;
-	int pass;
-	int row1, col1,row2,col2,row3,col3,row4,col4;
-	char seat[9][9]={
+void prt();
+char seat[9][9]={
 	{'-','-','-','-','-','-','-','-','-'},
 	{'-','-','-','-','-','-','-','-','-'},
 	{'-','-','-','-','-','-','-','-','-'},
@@ -17,6 +12,13 @@ int main(){
 	{'-','-','-','-','-','-','-','-','-'},
 	{'-','-','-','-','-','-','-','-','-'},
 	{'-','-','-','-','-','-','-','-','-'}};
+int main(){
+	int state=0;
+	int a=0,i,j,k,peo;
+	char ch,y;
+	int pass;
+	int row1, col1,row2,col2,row3,col3,row4,col4;
+	
 	puts("      *            *            *");
     puts("     ***          ***          ***");
     puts("    *****        *****        *****");
@@ -84,6 +86,11 @@ int main(){
 		   			case 'D':
 		   				state=5;
 		   				break;
+		   			default:
+		   				printf("輸入錯誤!!!\n");
+		   				system("pause");
+		   				state=1;
+		   				break;
 				   }
 				   system("CLS");
 				   break;
@@ -106,14 +113,7 @@ int main(){
    				selected[row][col] = 1; // 標記為已選取
     			seat[row][col] = '*';
 				}
-				printf(" 123456789\n");
-					for (i = 0; i < 9; i++) {
-    					printf("%d", i+1);
-    					for (j = 0; j < 9; j++) {
-        					printf("%c", seat[i][j]);
-    					}
-    					printf("\n");
-					}
+				prt();
 				system("pause");
 				system("CLS");
 				state=1;
@@ -132,28 +132,14 @@ int main(){
     					} while (selected[row1][col1]); // // 如果已經選取過，則重新選取
    					one[row1][col1] = 1; // 標記為已選取
     				seat[row1][col1] = '@';
-    				printf(" 123456789\n");
-					for (i = 0; i < 9; i++) {
-    					printf("%d", i+1);
-    					for (j = 0; j < 9; j++) {
-        					printf("%c", seat[i][j]);
-    					}
-    					printf("\n");
-					}
+    				prt();
 					printf("是否滿意(y/n)\n");
 					fflush(stdin);
 					scanf("%c",&y);
 						if(y=='y'||y=='Y'){
 							system("CLS");
 							seat[row1][col1] = '*';
-							printf(" 123456789\n");
-							for (i = 0; i < 9; i++) {
-    							printf("%d", i+1);
-    						for (j = 0; j < 9; j++) {
-        						printf("%c", seat[i][j]);
-    					}
-    					printf("\n");
-						}
+							prt();
 							state=1;
 							system("pause");
 							system("CLS");
@@ -165,7 +151,16 @@ int main(){
 							system("CLS");
 							state=1;
 							break;
-						}}
+						}
+						else{
+							printf("錯誤!!\a\n");
+							seat[row1][col1] = '-';
+							system("pause");
+							system("CLS");
+							state=1;
+							break;
+						}
+				}
 				if(peo==2){
 					srand((unsigned)time(NULL));// 使用時間作為種子，以確保每次運行都有不同的隨機數
 					int two[9][9] = {0}; // 用於記錄已選取的位置
@@ -180,14 +175,7 @@ int main(){
     				seat[row1][col1] = '@';
     				seat[row2][col2] = '@';
 
-    				printf(" 123456789\n");
-					for (i = 0; i < 9; i++) {
-    					printf("%d", i+1);
-    					for (j = 0; j < 9; j++) {
-        					printf("%c", seat[i][j]);
-    					}
-    					printf("\n");
-					}
+    				prt();
 					printf("是否滿意(y/n)\n");
 					fflush(stdin);
 					scanf("%c",&y);
@@ -195,14 +183,7 @@ int main(){
 							system("CLS");
 							seat[row1][col1] = '*';
     						seat[row2][col2] = '*';
-							printf(" 123456789\n");
-							for (i = 0; i < 9; i++) {
-    							printf("%d", i+1);
-    						for (j = 0; j < 9; j++) {
-        						printf("%c", seat[i][j]);
-    					}
-    					printf("\n");
-						}
+							prt();
 							state=1;
 							system("pause");
 							system("CLS");
@@ -212,6 +193,14 @@ int main(){
 						else if(y=='n'||y=='N'){
 							seat[row1][col1] = '-';
     						seat[row2][col2] = '-';
+							system("CLS");
+							state=1;
+							break;
+						}
+						else{
+							printf("錯誤!!\a\n");
+							seat[row1][col1] = '-';
+							system("pause");
 							system("CLS");
 							state=1;
 							break;
@@ -234,14 +223,7 @@ int main(){
     				seat[row2][col2] = '@';
     				seat[row3][col3] = '@';
 
-    				printf(" 123456789\n");
-					for (i = 0; i < 9; i++) {
-    					printf("%d", i+1);
-    					for (j = 0; j < 9; j++) {
-        					printf("%c", seat[i][j]);
-    					}
-    					printf("\n");
-					}
+    				prt();
 					printf("是否滿意(y/n)\n");
 					fflush(stdin);
 					scanf("%c",&y);
@@ -250,14 +232,7 @@ int main(){
 							seat[row1][col1] = '*';
     						seat[row2][col2] = '*';
     						seat[row3][col3] = '*';
-							printf(" 123456789\n");
-							for (i = 0; i < 9; i++) {
-    							printf("%d", i+1);
-    						for (j = 0; j < 9; j++) {
-        						printf("%c", seat[i][j]);
-    					}
-    					printf("\n");
-						}
+							prt();
 							state=1;
 							system("pause");
 							system("CLS");
@@ -268,6 +243,14 @@ int main(){
 							seat[row1][col1] = '-';
     						seat[row2][col2] = '-';
     						seat[row3][col3] = '-';
+							system("CLS");
+							state=1;
+							break;
+						}
+						else{
+							printf("錯誤!!\a\n");
+							seat[row1][col1] = '-';
+							system("pause");
 							system("CLS");
 							state=1;
 							break;
@@ -283,4 +266,15 @@ int main(){
 	
 	system("pause");
 	return 0;
+}
+void prt(){
+	int i,j;
+	printf(" 123456789\n");
+	for (i = 0; i < 9; i++) {
+    printf("%d", i+1);
+    for (j = 0; j < 9; j++) {
+    printf("%c", seat[i][j]);
+    }
+    printf("\n");
+	}
 }
