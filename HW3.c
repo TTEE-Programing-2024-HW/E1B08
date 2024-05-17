@@ -125,12 +125,11 @@ int main(){
 				system("CLS");
 				if(peo==1){
 					srand((unsigned)time(NULL));// 使用時間作為種子，以確保每次運行都有不同的隨機數
-					int one[9][9] = {0}; // 用於記錄已選取的位置
     					do {
         					row1 = rand() % 9;
         					col1 = rand() % 9;
     					} while (selected[row1][col1]); // // 如果已經選取過，則重新選取
-   					one[row1][col1] = 1; // 標記為已選取
+   					selected[row1][col1] = 1; // 標記為已選取
     				seat[row1][col1] = '@';
     				prt();
 					printf("是否滿意(y/n)\n");
@@ -161,17 +160,16 @@ int main(){
 							break;
 						}
 				}
-				if(peo==2){
+				else if(peo==2){
 					srand((unsigned)time(NULL));// 使用時間作為種子，以確保每次運行都有不同的隨機數
-					int two[9][9] = {0}; // 用於記錄已選取的位置
     						do {
         					row1 = rand() % 9;
         					col1 = rand() % 9;
         					row2=row1;
         					col2=col1+1;
-    					} while ((selected[row1][col1])||(selected[row2][col2])); // // 如果已經選取過，則重新選取
-   					two[row1][col1] = 1; // 標記為已選取
-   					two[row2][col2] = 1;
+    					} while ((selected[row1][col1])||(selected[row2][col2])||(row2>9)||(col2>9)); // // 如果已經選取過，則重新選取
+   					selected[row1][col1] = 1; // 標記為已選取
+   					selected[row2][col2] = 1;
     				seat[row1][col1] = '@';
     				seat[row2][col2] = '@';
 
@@ -200,25 +198,25 @@ int main(){
 						else{
 							printf("錯誤!!\a\n");
 							seat[row1][col1] = '-';
+    						seat[row2][col2] = '-';
 							system("pause");
 							system("CLS");
 							state=1;
 							break;
 						}
 				}
-				if(peo==3){
+				else if(peo==3){
 					srand((unsigned)time(NULL));// 使用時間作為種子，以確保每次運行都有不同的隨機數
-					int two[9][9] = {0}; // 用於記錄已選取的位置
     						do {
         					row1 = rand() % 9;
         					col1 = rand() % 9;
         					row2=row3=row1;
         					col2=col1+1;
         					col3=col2+1;
-    					} while ((selected[row1][col1])||(selected[row2][col2])||(selected[row3][col3])); // // 如果已經選取過，則重新選取
-   					two[row1][col1] = 1; // 標記為已選取
-   					two[row2][col2] = 1;
-   					two[row3][col3] = 1;
+    					} while ((selected[row1][col1])||(selected[row2][col2])||(selected[row3][col3])||(row2>9)||(row3>9)||(col3>9)||(col2>9)); // // 如果已經選取過，則重新選取
+   					selected[row1][col1] = 1; // 標記為已選取
+   					selected[row2][col2] = 1;
+   					selected[row3][col3] = 1;
     				seat[row1][col1] = '@';
     				seat[row2][col2] = '@';
     				seat[row3][col3] = '@';
@@ -250,13 +248,142 @@ int main(){
 						else{
 							printf("錯誤!!\a\n");
 							seat[row1][col1] = '-';
+    						seat[row2][col2] = '-';
+    						seat[row3][col3] = '-';
 							system("pause");
 							system("CLS");
 							state=1;
 							break;
 						}
 				}
-			
+				else if(peo==4){
+					int cho;
+					printf("相鄰4位--1\n並排兩位--2\n");
+					scanf("%d,&cho");
+					if(cho==1){
+						srand((unsigned)time(NULL));// 使用時間作為種子，以確保每次運行都有不同的隨機數
+    						do {
+        					row1 = rand() % 9;
+        					col1 = rand() % 9;
+        					row2=row3=row4=row1;
+        					col2=col1+1;
+        					col3=col2+1;
+        					col4=col3+1;
+    					} while ((selected[row1][col1])||(selected[row2][col2])||(selected[row3][col3])||(selected[row4][col4])||(row2>9)||(row3>9)||(row4>9)||(col4>9)||(col3>9)||(col2>9)); // // 如果已經選取過，則重新選取
+   					selected[row1][col1] = 1; // 標記為已選取
+   					selected[row2][col2] = 1;
+   					selected[row3][col3] = 1;
+   					selected[row4][col4] = 1;
+    				seat[row1][col1] = '@';
+    				seat[row2][col2] = '@';
+    				seat[row3][col3] = '@';
+    				seat[row4][col4] = '@';
+
+    				prt();
+					printf("是否滿意(y/n)\n");
+					fflush(stdin);
+					scanf("%c",&y);
+						if(y=='y'||y=='Y'){
+							system("CLS");
+							seat[row1][col1] = '*';
+    						seat[row2][col2] = '*';
+    						seat[row3][col3] = '*';
+    						seat[row4][col4] = '*';
+							prt();
+							state=1;
+							system("pause");
+							system("CLS");
+							
+							break;
+						}
+						else if(y=='n'||y=='N'){
+							seat[row1][col1] = '-';
+    						seat[row2][col2] = '-';
+    						seat[row3][col3] = '-';
+    						seat[row4][col4] = '-';
+							system("CLS");
+							state=1;
+							break;
+						}
+						else{
+							printf("錯誤!!\a\n");
+							seat[row1][col1] = '-';
+    						seat[row2][col2] = '-';
+    						seat[row3][col3] = '-';
+    						seat[row4][col4] = '-';
+							system("pause");
+							system("CLS");
+							state=1;
+							break;
+						}
+					}
+					else if(cho==2){
+						srand((unsigned)time(NULL));// 使用時間作為種子，以確保每次運行都有不同的隨機數
+    						do {
+        					row1 = rand() % 9;
+        					col1 = rand() % 9;
+        					row2=row1;
+							row4=row3=row1+1;
+        					col2=col4=col1+1;
+        					col3=col1;
+    					} while ((selected[row1][col1])||(selected[row2][col2])||(selected[row3][col3])||(selected[row4][col4])||(row2>9)||(row3>9)||(row4>9)||(col4>9)||(col3>9)||(col2>9)); // // 如果已經選取過，則重新選取
+   					selected[row1][col1] = 1; // 標記為已選取
+   					selected[row2][col2] = 1;
+   					selected[row3][col3] = 1;
+   					selected[row4][col4] = 1;
+    				seat[row1][col1] = '@';
+    				seat[row2][col2] = '@';
+    				seat[row3][col3] = '@';
+    				seat[row4][col4] = '@';
+
+    				prt();
+					printf("是否滿意(y/n)\n");
+					fflush(stdin);
+					scanf("%c",&y);
+						if(y=='y'||y=='Y'){
+							system("CLS");
+							seat[row1][col1] = '*';
+    						seat[row2][col2] = '*';
+    						seat[row3][col3] = '*';
+    						seat[row4][col4] = '*';
+							prt();
+							state=1;
+							system("pause");
+							system("CLS");
+							
+							break;
+						}
+						else if(y=='n'||y=='N'){
+							seat[row1][col1] = '-';
+    						seat[row2][col2] = '-';
+    						seat[row3][col3] = '-';
+    						seat[row4][col4] = '-';
+							system("CLS");
+							state=1;
+							break;
+						}
+						else{
+							printf("錯誤!!\a\n");
+							seat[row1][col1] = '-';
+    						seat[row2][col2] = '-';
+    						seat[row3][col3] = '-';
+    						seat[row4][col4] = '-';
+							system("pause");
+							system("CLS");
+							state=1;
+							break;
+						}
+					}
+					else{
+						printf("錯誤!!\a\n");
+							system("pause");
+							system("CLS");
+							state=1;
+							break;
+					}
+					
+					
+				}
 					break;
 				
 				
