@@ -385,6 +385,43 @@ int main(){
 					
 				}
 					break;
+			case 4:
+    			printf("輸入座位(EX:1-2)，結束時輸入0-0\n");
+    			while (1) {
+        			fflush(stdin);
+        			int chorow, chocol;
+        			scanf("%d-%d", &chorow, &chocol);
+        				if (chorow == 0 && chocol == 0) {
+            				break;
+        				}
+        				if (chorow < 1 || chorow > 9 || chocol < 1 || chocol > 9) {
+           					printf("輸入的座位號碼無效！\n");
+            				continue;
+        				}
+        				if (selected[chorow - 1][chocol - 1] == 1) {
+            				printf("座位 %d-%d 已被選擇！\n", chorow, chocol);
+            				continue;
+        				}
+        			
+        			selected[chorow - 1][chocol - 1] = 1;
+        			seat[chorow - 1][chocol - 1] ='@';
+    			}
+				prt();
+    			printf("按任意鍵繼續...\n");
+    			for (i = 0; i < 9; i++) {
+    				for (j = 0; j < 9; j++) {
+    					if(seat[i][j]=='@'){
+    						seat[i][j]='*';
+						}
+    				}
+				}
+    			getchar();
+    			system("pause");
+    			system("CLS");
+    			state = 1;
+    			break;
+
+				
 				
 				
 				
