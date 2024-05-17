@@ -259,7 +259,7 @@ int main(){
 				else if(peo==4){
 					int cho;
 					printf("相鄰4位--1\n並排兩位--2\n");
-					scanf("%d,&cho");
+					scanf("%d",&cho);
 					if(cho==1){
 						srand((unsigned)time(NULL));// 使用時間作為種子，以確保每次運行都有不同的隨機數
     						do {
