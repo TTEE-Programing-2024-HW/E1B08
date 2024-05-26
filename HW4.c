@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 struct data {
     char name[10];
@@ -11,10 +12,12 @@ struct data {
 
 void inputStudents(struct data *input, int n);
 void printStudents(struct data *input,int n);
+void pickStudents(struct data *input,int n,char *in);
+
 int main() {
     int state = 0;
     int pass, a = 0, n;
-    char ch;
+    char ch, in;
     
  	puts("      *            *            *");
     puts("     ***          ***          ***");
@@ -115,6 +118,19 @@ int main() {
             	printStudents(input, n);
 				system("pause");
 				system("CLS");
+				state = 1;
+                break;
+            case 4:
+    			system("CLS"); // 清除螢幕
+    			printf("請輸入要搜尋的姓名：\n");
+    			scanf("%s", &in);
+    			pickStudents(input, n, &in); // 呼叫 pickStudents 函數進行搜尋
+    			printf("按下任意鍵返回主選單...\n");
+    			system("pause"); // 等待用戶按下任意鍵
+    			system("CLS"); // 清除螢幕
+    			state = 1; // 返回主選單
+    			break;
+
         }
     }
     system("pause");
@@ -152,12 +168,29 @@ void inputStudents(struct data *input, int n) {
         } while (input[i].en < 0 || input[i].en > 100);
     }
 }
+
 void printStudents(struct data *input, int n) {
     int i;
     for (i = 0; i < n; i++) {
         printf("姓名：%s 學號：%d\n數學成績：%d 物理成績：%d 英文成績：%d\n個人平均成績：%4.1f\n",
                input[i].name, input[i].ID, input[i].ma, input[i].ph, input[i].en,
                ((float)input[i].ma + (float)input[i].ph + (float)input[i].en) / 3);
+    }
+}
+
+void pickStudents(struct data *input, int n, char *in) {
+    int i;
+    int found = 0; // 用於標記是否找到匹配姓名
+    for (i = 0; i < n; i++) {
+        if (strcmp(input[i].name, in) == 0) {
+            printf("姓名：%s 學號：%d\n數學成績：%d 物理成績：%d 英文成績：%d\n個人平均成績：%4.1f\n",
+                   input[i].name, input[i].ID, input[i].ma, input[i].ph, input[i].en,
+                   ((float)input[i].ma + (float)input[i].ph + (float)input[i].en) / 3);
+            found = 1;
+        }
+    }
+    if (!found) {
+        printf("找不到該學生資料。\n");
     }
 }
 
