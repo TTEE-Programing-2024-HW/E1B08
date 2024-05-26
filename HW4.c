@@ -13,6 +13,7 @@ struct data {
 void inputStudents(struct data *input, int n);
 void printStudents(struct data *input,int n);
 void pickStudents(struct data *input,int n,char *in);
+void score(struct data *input,int n);
 
 int main() {
     int state = 0;
@@ -121,16 +122,23 @@ int main() {
 				state = 1;
                 break;
             case 4:
-    			system("CLS"); // 清除螢幕
+    			system("CLS"); 
     			printf("請輸入要搜尋的姓名：\n");
     			scanf("%s", &in);
-    			pickStudents(input, n, &in); // 呼叫 pickStudents 函數進行搜尋
+    			pickStudents(input, n, &in); 
     			printf("按下任意鍵返回主選單...\n");
-    			system("pause"); // 等待用戶按下任意鍵
-    			system("CLS"); // 清除螢幕
-    			state = 1; // 返回主選單
+    			system("pause"); 
+    			system("CLS"); 
+    			state = 1; 
     			break;
-
+			case 5:
+				system("CLS"); 
+    			score(input, n); 
+    			printf("按下任意鍵返回主選單...\n");
+    			system("pause"); 
+    			system("CLS");
+    			state = 1; 
+    			break;
         }
     }
     system("pause");
@@ -180,7 +188,7 @@ void printStudents(struct data *input, int n) {
 
 void pickStudents(struct data *input, int n, char *in) {
     int i;
-    int found = 0; // 用於標記是否找到匹配姓名
+    int found = 0;
     for (i = 0; i < n; i++) {
         if (strcmp(input[i].name, in) == 0) {
             printf("姓名：%s 學號：%d\n數學成績：%d 物理成績：%d 英文成績：%d\n個人平均成績：%4.1f\n",
@@ -193,4 +201,23 @@ void pickStudents(struct data *input, int n, char *in) {
         printf("找不到該學生資料。\n");
     }
 }
+void score(struct data *input,int n){
+	// 將學生資料利用氣泡排序法按照平均成績進行排序
+    int i, j;
+    struct data after;
+    float avg1,avg2;
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - i - 1; j++) {
+            avg1 = ((float)input[j].ma + (float)input[j].ph + (float)input[j].en) / 3;
+            avg2 = ((float)input[j + 1].ma + (float)input[j + 1].ph + (float)input[j + 1].en) / 3;
+            if (avg1 < avg2) {
 
+                after = input[j];
+                input[j] = input[j + 1];
+                input[j + 1] = after;
+            }
+        }
+    }
+   	printStudents(input, n);
+
+}
