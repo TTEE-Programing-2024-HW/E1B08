@@ -10,7 +10,7 @@ struct data {
 };
 
 void inputStudents(struct data *input, int n);
-
+void printStudents(struct data *input,int n);
 int main() {
     int state = 0;
     int pass, a = 0, n;
@@ -110,6 +110,11 @@ int main() {
                     printf("輸入錯誤！n必須在5到10之間。\n");
                     break;
                 }
+            case 3:
+            	system("CLS");
+            	printStudents(input, n);
+				system("pause");
+				system("CLS");
         }
     }
     system("pause");
@@ -145,6 +150,14 @@ void inputStudents(struct data *input, int n) {
                 printf("成績輸入錯誤！請重新輸入。\n");
             }
         } while (input[i].en < 0 || input[i].en > 100);
+    }
+}
+void printStudents(struct data *input, int n) {
+    int i;
+    for (i = 0; i < n; i++) {
+        printf("姓名：%s 學號：%d\n數學成績：%d 物理成績：%d 英文成績：%d\n個人平均成績：%4.1f\n",
+               input[i].name, input[i].ID, input[i].ma, input[i].ph, input[i].en,
+               ((float)input[i].ma + (float)input[i].ph + (float)input[i].en) / 3);
     }
 }
 
